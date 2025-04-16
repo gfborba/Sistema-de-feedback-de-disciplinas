@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disciplinas</title>
+</head>
+<body>
+    <h1>Disciplinas</h1>
+    <table>
+        <thead>
+         <tr>
+             <th>Nome</th>
+             <th>Mais informações</th>
+         </tr>
+        </thead>
+     
+        <tbody>
+         {% for disciplinas in disciplinas %}
+         <tr>
+             <th>{{disciplinas.nome}}</th>
+             <td><a href="{% url 'disciplinas' disciplinas.id %}">Ver detalhes</a></td>
+         </tr>
+         {% endfor %}
+        </tbody>
+     </table>
+</body>
+</html>
