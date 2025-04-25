@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliar</title>
+</head>
+<body>
+    <form action="{% url 'avaliacao' disciplina.id %}" method="POST"> {% csrf_token %}
+        <input type="number" placeholder="Nota" name="nota">
+        <input type="text" placeholder="Comentario" name="comentario">
+        <button type="submit">Avaliar</button>
+    </form>
+</body>
+</html>

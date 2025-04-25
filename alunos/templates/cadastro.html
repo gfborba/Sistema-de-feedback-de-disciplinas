@@ -1,18 +1,25 @@
+{% load static compress sass_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="{% sass_src 'scss/base.scss' %}">
 </head>
 <body>
-    <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
-        <input type="text" placeholder="Username" name="username">
-        <input type="text" placeholder="Nome" name="firstname">
-        <input type="text" placeholder="Sobrenome" name="lastname">
-        <input type="email" placeholder="E-mail" name="email">
-        <input type="password" placeholder="Senha" name="senha">
-        <button type="submit">Registrar-se</button>
+    <form class="form-auth" id="form-register" action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
+        <input class="form-input" type="text" placeholder="Username" name="username">
+        <input class="form-input" type="text" placeholder="Nome" name="firstname">
+        <input class="form-input" type="text" placeholder="Sobrenome" name="lastname">
+        <input class="form-input" type="email" placeholder="E-mail" name="email">
+        <input class="form-input" type="password" placeholder="Senha" name="senha">
+        <button class="button" type="submit">Registrar-se</button>
+        {% if useralredyexist %}
+            <div class="error-message">
+                {{ useralredyexist }}
+            </div>
+        {% endif %}
         
     </form>
 </body>

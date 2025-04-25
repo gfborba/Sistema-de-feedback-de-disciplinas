@@ -15,8 +15,8 @@ def cadastro(request):
         senha = request.POST.get('senha')
 
         if User.objects.filter(username=username).exists():
-            print('Username já existe.')
-            return render (request, 'cadastro.html')
+            contexto = {'useralredyexist': 'Usuário já existe'}
+            return render (request, 'cadastro.html', contexto)
         
         user = User.objects.create_user(
             username=username, 
@@ -44,8 +44,8 @@ def login(request):
 
             return redirect ('index')
         else:
-            print('Usuário ou senha incorretos')
-            return render (request, 'login.html')
+            contexto = {'error': 'Usuário ou senha incorretos'}
+            return render (request, 'login.html', contexto)
 
 
 @login_required

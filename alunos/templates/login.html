@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="{% sass_src 'scss/base.scss' %}">
 </head>
 <body>
-    <form id="form-login" action="{% url 'login' %}" method="POST"> {% csrf_token %}
-        <input type="text" name="username" placeholder="Usuário">
-        <input type="password" name="senha" placeholder="Senha">
-        <button type="submit">Entrar</button>
+    <form class="form-auth" action="{% url 'login' %}" method="POST"> {% csrf_token %}
+        <input class="form-input" type="text" name="username" placeholder="Usuário">
+        <input class="form-input" type="password" name="senha" placeholder="Senha">
+        <button class="button" type="submit">Entrar</button>
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
     </form>
 
-    <button type="button" onclick="window.location.href='../cadastro/'">Registrar-se</button>
+    <button class="button" id="register-button" type="button" onclick="window.location.href='../cadastro/'">Registrar-se</button>
 </body>
 </html>

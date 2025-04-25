@@ -1,0 +1,79 @@
+$left-color:  #242e4d;
+$right-color: #897e79;
+$green-dark:  #35c3c1;
+$green-light: #00d6b7;
+$gray:        #8f8f8f;
+$gray-light:  #f5f6f8;
+
+@mixin buttons{
+    padding: 15px;
+    width: 100%;
+    max-width: 40%;
+    border-radius: 4px;
+    border: 1px solid $green-dark;
+    background-color: $green-light;
+    margin-inline: auto;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: $gray-light;
+}
+
+@mixin error{
+    font-size: 16px;
+    color: red;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-inline: auto;
+    -webkit-text-stroke: .5px rgb(105, 105, 105);
+    
+}
+
+html, body{height: 100%;}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    background: linear-gradient(135deg, rgba($left-color, .9), rgba($right-color, .9)
+    );
+    font-family: 'Roboto', helvetica, arial, sans-serif;
+    font-size: 1.5em;
+}
+
+.form-auth{
+    width: 100%;
+    max-width: 15em;
+    padding: 2em;
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .form-input{
+        padding: 1em;
+        font-size: 1rem;
+    }
+
+    .button{
+        @include buttons()
+    }
+    
+    &#form-register{
+        .button{
+            max-width: 50%
+        }
+    }
+}
+
+#register-button{
+    @include buttons();
+    margin-top: 30px;
+    max-width: 10%;
+}
+
+.error-message{
+    @include error
+}
+

@@ -13,6 +13,13 @@
             <li>Professor: {{disciplinas.professor}}</li>
             <li>descricao: {{disciplinas.descricao}}</li>
         </ul>
+        <button type="button" id="btn-avaliar" data-url="{% url 'avaliacao' disciplinas.id %}">Avaliar</button>
     </main>
+
+    <script>
+        document.getElementById('btn-avaliar').addEventListener('click', function() {
+            window.location.href = this.dataset.url;
+        });
+    </script>
 </body>
 </html>
