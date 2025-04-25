@@ -1,19 +1,35 @@
+{% load static compress sass_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disciplina</title>
+    <link rel="stylesheet" href="{% sass_src 'scss/base.scss' %}">
 </head>
 <body>
-    <main>
+    <nav class="navbar">
+        <h1>Detalhes</h1>
+        <a href="{% url 'logout' %}">SAIR</a>
+    </nav>
+    <main class="detalhes-disciplinas">
         <h1>Mostrando detalhes de {{disciplinas.nome}}</h1>
         <ul>
             <li>Nome: {{disciplinas.nome}}</li>
             <li>Professor: {{disciplinas.professor}}</li>
             <li>descricao: {{disciplinas.descricao}}</li>
+            <li>Nota:  {% if disciplinas.media %}
+                {{ disciplinas.media|floatformat:1 }}
+            {% else %}
+                N/A
+            {% endif %}</li>
         </ul>
         <button type="button" id="btn-avaliar" data-url="{% url 'avaliacao' disciplinas.id %}">Avaliar</button>
+        {% if alreadyav %}
+            <div class="error-message" >
+                {{ alreadyav }}
+            </div>
+        {% endif %}
     </main>
 
     <script>

@@ -1,34 +1,41 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Disciplinas, Avaliacao
+from django.db.models import Avg
 
 @login_required(login_url='login')
 def index(request):
-
-    disciplinas = Disciplinas.objects.all
-    return render(request, 'index.html', {'disciplinas':disciplinas})
+    disciplinas = Disciplinas.objects.annotate(media=Avg('avaliacao__nota')).all()
+    return render(request, 'index.html', {'disciplinas': disciplinas})
 
 def disciplinas(request, id):
-    disciplinas = Disciplinas.objects.get(id=id)
-    return render (request, 'disciplinas.html', {'disciplinas':disciplinas})
+    disciplina = get_object_or_404(
+        Disciplinas.objects.annotate(media=Avg('avaliacao__nota')), id=id
+    )
+    return render(request, 'disciplinas.html', {'disciplinas': disciplina})
 
+@login_required(login_url='login')
 def avaliacao(request, id):
-    disciplina = Disciplinas.objects.get(id=id)
-    avaliacao_aluno = Avaliacao.objects.filter(disciplina=disciplina, user=request.user)
+    disciplina = get_object_or_404(Disciplinas, id=id)
+    ja_avaliou = Avaliacao.objects.filter(
+        disciplina=disciplina,
+        user=request.user
+    ).exists()
 
-    if avaliacao_aluno.exists():
-            return HttpResponse ("Você já avaliou essa disciplina!")
+    if ja_avaliou:
+        return render(request, 'disciplinas.html', {
+            'disciplinas': disciplina, 'alreadyav': 'Avaliação já realizada para essa disciplina'
+        })
+
+    if request.method == "POST":
+        nota = request.POST.get('nota')
+        comentario = request.POST.get('comentario')
+        Avaliacao.objects.create(
+            disciplina=disciplina,
+            user=request.user,
+            nota=nota,
+            comentario=comentario
+        )
+        return render(request, 'disciplinas.html', {'disciplinas': disciplina})
     else:
-        if request.method == "POST":
-                nota = request.POST.get('nota')
-                comentario = request.POST.get('comentario')
-
-                avaliacao = Avaliacao.objects.create(
-                    disciplina=disciplina,
-                    user=request.user,
-                    nota=nota,
-                    comentario=comentario)
-                avaliacao.save()
-                return HttpResponse("Avaliação realizada com sucesso.")
-        else:
-            return render (request, 'avaliar.html',{'disciplina':disciplina})
+        return render(request, 'avaliar.html', {'disciplina': disciplina})

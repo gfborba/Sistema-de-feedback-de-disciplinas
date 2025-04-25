@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body {
   height: 100%; }
 
@@ -56,6 +57,118 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
   margin-inline: auto;
-  -webkit-text-stroke: 0.5px dimgray; }
+  -webkit-text-stroke: 0.5px dimgray;
+  max-width: max-content;
+  margin-top: 10px; }
+
+.navbar h1 {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  margin: 0;
+  font-size: 20px;
+  color: #f5f6f8; }
+
+.navbar a {
+  padding: 15px;
+  width: 100%;
+  max-width: 40%;
+  border-radius: 4px;
+  border: 1px solid #35c3c1;
+  background-color: #00d6b7;
+  margin-inline: auto;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #f5f6f8;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  max-width: 70px;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px; }
+
+.page-disciplinas {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 3rem 2rem 2rem; }
+  .page-disciplinas table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    font-size: 1rem; }
+    .page-disciplinas table thead {
+      background-color: #242e4d; }
+      .page-disciplinas table thead th {
+        color: #f5f6f8;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 1rem; }
+    .page-disciplinas table tbody tr {
+      border-bottom: 1px solid #f5f6f8; }
+      .page-disciplinas table tbody tr:nth-child(even) {
+        background: rgba(137, 126, 121, 0.1); }
+      .page-disciplinas table tbody tr:hover {
+        background: rgba(0, 214, 183, 0.2); }
+      .page-disciplinas table tbody tr th, .page-disciplinas table tbody tr td {
+        padding: 0.75rem 1rem;
+        text-align: left; }
+      .page-disciplinas table tbody tr td {
+        text-align: right; }
+      .page-disciplinas table tbody tr td a {
+        color: #897e79;
+        text-decoration: none;
+        font-weight: bold; }
+        .page-disciplinas table tbody tr td a:hover {
+          text-decoration: underline; }
+
+.detalhes-disciplinas {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  margin: 2rem auto; }
+  .detalhes-disciplinas h1 {
+    margin-top: 0;
+    font-size: 30px;
+    color: #242e4d;
+    text-align: center; }
+  .detalhes-disciplinas ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0; }
+    .detalhes-disciplinas ul li {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #f5f6f8;
+      font-size: 18px;
+      list-style: none;
+      text-transform: capitalize; }
+      .detalhes-disciplinas ul li:last-child {
+        border-bottom: none; }
+      .detalhes-disciplinas ul li::before {
+        content: "•";
+        color: #35c3c1;
+        display: inline-block;
+        width: 1rem; }
+  .detalhes-disciplinas #btn-avaliar {
+    padding: 15px;
+    width: 100%;
+    max-width: 40%;
+    border-radius: 4px;
+    border: 1px solid #35c3c1;
+    background-color: #00d6b7;
+    margin-inline: auto;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #f5f6f8;
+    display: block;
+    margin: 1.5rem auto 0;
+    max-width: 50%; }
 
 /*# sourceMappingURL=base.css.map */

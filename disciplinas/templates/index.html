@@ -1,18 +1,26 @@
+{% load static compress sass_tags %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disciplinas</title>
+    <link rel="stylesheet" href="{% sass_src 'scss/base.scss' %}">
 </head>
 <body>
-    <h1>Disciplinas</h1>
-    <a href="{% url 'logout' %}">SAIR</a>
+    <nav class="navbar">
+        <h1>Disciplinas</h1>
+        <a href="{% url 'logout' %}">SAIR</a>
+    </nav>
+
+    <div class="page-disciplinas">
     <table>
         <thead>
          <tr>
              <th>Nome</th>
              <th>Mais informações</th>
+             <th>Nota</th>
          </tr>
         </thead>
      
@@ -21,9 +29,17 @@
          <tr>
              <th>{{disciplinas.nome}}</th>
              <td><a href="{% url 'disciplinas' disciplinas.id %}">Ver detalhes</a></td>
+             <td>
+                Nota:  {% if disciplinas.media %}
+                {{ disciplinas.media|floatformat:1 }}
+            {% else %}
+                N/A
+            {% endif %}
+             </td>
          </tr>
          {% endfor %}
         </tbody>
      </table>
+    </div>
 </body>
 </html>

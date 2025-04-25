@@ -1,15 +1,21 @@
+{% load static compress sass_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliar</title>
+    <link rel="stylesheet" href="{% sass_src 'scss/base.scss' %}">
 </head>
 <body>
-    <form action="{% url 'avaliacao' disciplina.id %}" method="POST"> {% csrf_token %}
-        <input type="number" placeholder="Nota" name="nota">
-        <input type="text" placeholder="Comentario" name="comentario">
-        <button type="submit">Avaliar</button>
+    <nav class="navbar">
+        <h1>Avaliar</h1>
+        <a href="{% url 'logout' %}">SAIR</a>
+    </nav>
+    <form class="form-auth" action="{% url 'avaliacao' disciplina.id %}" method="POST"> {% csrf_token %}
+        <input class="form-input" type="number" placeholder="Nota" name="nota">
+        <input class="form-input" type="text" placeholder="Comentario" name="comentario">
+        <button class="button" type="submit">Avaliar</button>
     </form>
 </body>
 </html>
