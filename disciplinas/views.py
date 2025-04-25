@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Disciplinas, Avaliacao
 from django.db.models import Avg
+
 
 @login_required(login_url='login')
 def index(request):
@@ -36,6 +37,6 @@ def avaliacao(request, id):
             nota=nota,
             comentario=comentario
         )
-        return render(request, 'disciplinas.html', {'disciplinas': disciplina})
+        return redirect('index')
     else:
         return render(request, 'avaliar.html', {'disciplina': disciplina})
